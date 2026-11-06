@@ -267,7 +267,10 @@ static bool usb_requests_hook_cb(USBDriver *usbp) {
             case USB_RTYPE_DIR_DEV2HOST:
                 switch (setup->bRequest) {
                     case HID_REQ_GetReport:
-                        return usb_get_report_cb(usbp);
+                        if (usb_get_report_cb(usbp)) {
+                            return true;
+                        }
+                        break;
                     case HID_REQ_GetProtocol:
                         if (setup->wIndex == KEYBOARD_INTERFACE) {
                             static uint8_t keyboard_protocol;

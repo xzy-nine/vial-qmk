@@ -36,6 +36,10 @@
 #    include "rgb_matrix.h"
 #endif
 
+#ifdef LAMPARRAY_ENABLE
+#    include "lamparray.h"
+#endif
+
 #include "keymap_common.h"
 #include "quantum_keycodes.h"
 #include "keycode_config.h"

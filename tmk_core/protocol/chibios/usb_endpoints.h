@@ -27,6 +27,10 @@
 #    define DIGITIZER_IN_CAPACITY USB_DEFAULT_BUFFER_CAPACITY
 #endif
 
+#if !defined(LAMPARRAY_IN_CAPACITY)
+#    define LAMPARRAY_IN_CAPACITY USB_DEFAULT_BUFFER_CAPACITY
+#endif
+
 #if !defined(CONSOLE_IN_CAPACITY)
 #    define CONSOLE_IN_CAPACITY USB_DEFAULT_BUFFER_CAPACITY
 #endif
@@ -97,6 +101,10 @@ typedef enum {
 #if defined(VIRTSER_ENABLE)
     USB_ENDPOINT_IN_CDC_DATA,
     USB_ENDPOINT_IN_CDC_SIGNALING,
+#endif
+
+#if defined(LAMPARRAY_ENABLE)
+    USB_ENDPOINT_IN_LAMPARRAY,
 #endif
     USB_ENDPOINT_IN_COUNT,
 /* All non shared endpoints have to be consequtive numbers starting from 0, so

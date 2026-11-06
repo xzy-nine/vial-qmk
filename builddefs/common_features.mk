@@ -1025,3 +1025,10 @@ ifeq ($(strip $(UART_DRIVER_REQUIRED)), yes)
         QUANTUM_LIB_SRC += uart.c
     endif
 endif
+
+ifeq ($(strip $(LAMPARRAY_ENABLE)), yes)
+    OPT_DEFS += -DLAMPARRAY_ENABLE
+    COMMON_VPATH += $(QUANTUM_DIR)/lamparray
+    SRC += $(QUANTUM_DIR)/lamparray/lamparray.c
+    SRC += $(QUANTUM_DIR)/lamparray/lamparray_usb.c
+endif

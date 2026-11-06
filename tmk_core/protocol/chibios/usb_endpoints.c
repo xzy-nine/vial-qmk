@@ -9,6 +9,10 @@
 #include "usb_endpoints.h"
 #include "report.h"
 
+#ifdef LAMPARRAY_ENABLE
+#    include "lamparray.h"
+#endif
+
 usb_endpoint_in_t usb_endpoints_in[USB_ENDPOINT_IN_COUNT] = {
 // clang-format off
 #if defined(SHARED_EP_ENABLE)
@@ -96,6 +100,10 @@ usb_endpoint_in_t usb_endpoints_in[USB_ENDPOINT_IN_COUNT] = {
 #    endif
     [USB_ENDPOINT_IN_CDC_SIGNALING] = QMK_USB_ENDPOINT_IN(USB_EP_MODE_TYPE_INTR, CDC_NOTIFICATION_EPSIZE, CDC_NOTIFICATION_EPNUM, CDC_SIGNALING_DUMMY_CAPACITY, NULL, NULL),
 #endif
+
+#if defined(LAMPARRAY_ENABLE)
+    [USB_ENDPOINT_IN_LAMPARRAY] = QMK_USB_ENDPOINT_IN(USB_EP_MODE_TYPE_INTR, LAMPARRAY_EPSIZE, LAMPARRAY_IN_EPNUM, LAMPARRAY_IN_CAPACITY, lamparray_usb_request_cb, NULL),
+#endif
 };
 
 usb_endpoint_in_lut_t usb_endpoint_interface_lut[TOTAL_INTERFACES] = {
@@ -134,6 +142,10 @@ usb_endpoint_in_lut_t usb_endpoint_interface_lut[TOTAL_INTERFACES] = {
 
 #if defined(DIGITIZER_ENABLE) && !defined(DIGITIZER_SHARED_EP)
     [DIGITIZER_INTERFACE] = USB_ENDPOINT_IN_DIGITIZER,
+#endif
+
+#if defined(LAMPARRAY_ENABLE)
+    [LAMPARRAY_INTERFACE] = USB_ENDPOINT_IN_LAMPARRAY,
 #endif
 };
 

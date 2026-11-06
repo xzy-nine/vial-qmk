@@ -19,3 +19,15 @@
 
 /* Five WS2812 LEDs, geometry defined in keymap.c. */
 #define RGB_MATRIX_LED_COUNT 5
+
+/*
+ * LampArray geometry in micrometers.
+ *
+ * The board is three keys wide and two keys tall on a 19.05 mm pitch, so the
+ * bounding box is 57150 x 38100 x 5000 um. Lamp positions are reported in
+ * absolute micrometers by lamparray_get_lamp_impl in keymap.c.
+ */
+#define LAMPARRAY_WIDTH 57150
+#define LAMPARRAY_HEIGHT 38100
+#define LAMPARRAY_DEPTH 5000
+#define LAMPARRAY_KIND LAMPARRAY_KIND_KEYBOARD

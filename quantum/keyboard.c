@@ -17,6 +17,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <stdint.h>
 #include "keyboard.h"
+#ifdef LAMPARRAY_ENABLE
+#    include "lamparray.h"
+#endif
 #include "keycode_config.h"
 #include "matrix.h"
 #include "keymap_introspection.h"
@@ -496,6 +499,9 @@ void keyboard_init(void) {
 #ifdef RGB_MATRIX_ENABLE
     rgb_matrix_init();
 #endif
+#ifdef LAMPARRAY_ENABLE
+    lamparray_init();
+#endif
 #if defined(UNICODE_COMMON_ENABLE)
     unicode_input_mode_init();
 #endif
@@ -752,6 +758,9 @@ void keyboard_task(void) {
 #endif
 #ifdef RGB_MATRIX_ENABLE
     rgb_matrix_task();
+#endif
+#ifdef LAMPARRAY_ENABLE
+    lamparray_task();
 #endif
 
 #if defined(BACKLIGHT_ENABLE)

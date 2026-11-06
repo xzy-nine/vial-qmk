@@ -2,7 +2,7 @@
   "name": "DL 5+1",
   "vendorId": "0x0051",
   "productId": "0x5251",
-  "lighting": "vialrgb",
+  "lighting": "none",
   "matrix": {
     "rows": 2,
     "cols": 3
