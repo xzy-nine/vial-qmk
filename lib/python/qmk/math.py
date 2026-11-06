@@ -23,8 +23,9 @@ def compute(expr):
 
 
 def _eval(node):
-    if isinstance(node, ast.Num):  # <number>
-        return node.n
+    # ast.Num was removed in Python 3.12; constant folding now uses ast.Constant.
+    if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):  # <number>
+        return node.value
     elif isinstance(node, ast.BinOp):  # <left> <operator> <right>
         return operators[type(node.op)](_eval(node.left), _eval(node.right))
     elif isinstance(node, ast.UnaryOp):  # <operator> <operand> e.g., -1
