@@ -3,13 +3,9 @@
 /*
  * DL 5+1 keymap.
  *
- * Lighting effect, hue, saturation and brightness all stay under Vial control.
- * Nothing in this file sets a mode or a value, so the GUI is always right.
- * The strip is lit whenever the firmware runs, and the bootloader never drives
- * PA8, so a dark board means DFU mode.
- *
- * Keycodes carry an RGB hint on layer 0 so that a plain QMK build also lights
- * up: this is the qmk_rgblight keycode layer, not a forced effect.
+ * Lighting effect, hue, saturation, brightness and speed all stay under Vial
+ * control through VialRGB; nothing here forces a mode or a value.
+ * The bootloader never drives PA8, so a dark board means DFU mode.
  */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -30,5 +26,29 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [1] = { ENCODER_CCW_CW(_______, _______) },
     [2] = { ENCODER_CCW_CW(_______, _______) },
     [3] = { ENCODER_CCW_CW(_______, _______) },
+};
+#endif
+
+#ifdef RGB_MATRIX_ENABLE
+/*
+ * The WS2812 chain does not follow key order. Measured on the real board:
+ *   LED 0 at key (0,1)   LED 1 at key (0,0)   LED 2 at key (1,2)
+ *   LED 3 at key (1,1)   LED 4 at key (1,0)
+ * Key (0,2) has no LED, so its matrix entry is NO_LED.
+ */
+led_config_t g_led_config = {
+    {
+        /* Key matrix to LED index: row 0 then row 1 */
+        {1, 0, NO_LED},
+        {4, 3, 2},
+    },
+    {
+        /* LED index to physical position on the 224x64 grid */
+        {112, 0}, {  0, 0}, {224, 64}, {112, 64}, {  0, 64},
+    },
+    {
+        /* LED index to flag: all five are per-key backlight */
+        4, 4, 4, 4, 4,
+    }
 };
 #endif

@@ -3,7 +3,9 @@
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
 
+# Direct RGB control from the Vial GUI (effect, colour, brightness, speed).
+VIALRGB_ENABLE = yes
+
 ENCODER_MAP_ENABLE = yes
 
-# Smaller image, no functional cost for this board.
 LTO_ENABLE = yes

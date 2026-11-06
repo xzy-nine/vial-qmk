@@ -17,7 +17,7 @@
     "nkro": true,
     "encoder": true,
     "encoder_map": true,
-    "rgblight": true,
+    "rgblight": false,
     "combo": true,
     "tap_dance": true,
     "key_override": true,
@@ -27,7 +27,8 @@
     "layer_lock": false,
     "send_string": false,
     "via": false,
-    "vial": true
+    "vial": true,
+    "rgb_matrix": true
   },
   "diode_direction": "COL2ROW",
   "matrix_pins": {
@@ -53,9 +54,6 @@
   "ws2812": {
     "pin": "A8",
     "driver": "bitbang"
-  },
-  "rgblight": {
-    "led_count": 5
   },
   "layouts": {
     "LAYOUT": {
@@ -122,5 +120,23 @@
       0,
       0
     ]
+  },
+  "rgb_matrix": {
+    "driver": "ws2812",
+    "led_count": 5,
+    "max_brightness": 255,
+    "animations": {
+      "breathing": true,
+      "rainbow_mood": true,
+      "rainbow_swirl": true,
+      "snake": true,
+      "knight": true,
+      "christmas": true,
+      "static_gradient": true,
+      "cycle_all": true,
+      "cycle_left_right": true,
+      "solid_color": true,
+      "splash": true
+    }
   }
 }
